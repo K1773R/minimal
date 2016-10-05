@@ -73,15 +73,7 @@ else
   sed -i "s/^CONFIG_DEBUG_KERNEL.*/\\# CONFIG_DEBUG_KERNEL is not set/" .config
 fi
 
-# Compile the kernel with optimization for 'parallel jobs' = 'number of processors'.
-# Good explanation of the different kernels:
-# http://unix.stackexchange.com/questions/5518/what-is-the-difference-between-the-following-kernel-makefile-terms-vmlinux-vmlinux
-echo "Building kernel..."
-make \
-  CFLAGS="-Os -s -fno-stack-protector -U_FORTIFY_SOURCE" \
-  bzImage -j $NUM_JOBS
-
-# Determine arch directory for the kernel image.
+# Determine arch for the kernel image.
 UNAMEM=$(uname -m)
 if [ "$UNAMEM" = "x86_64" ] || [ "$UNAMEM" = "x86" ] || [ "$UNAMEM" = "i386" ] || [ "$UNAMEM" = "i686" ]; then
   ARCH=x86
@@ -92,8 +84,21 @@ else
   exit 1
 fi
 
+# Compile the kernel with optimization for 'parallel jobs' = 'number of processors'.
+# Good explanation of the different kernels:
+# http://unix.stackexchange.com/questions/5518/what-is-the-difference-between-the-following-kernel-makefile-terms-vmlinux-vmlinux
+echo "Building kernel..."
+if [ "$ARCH" = "powerpc" ]; then
+  KERNELBINARY="bzImage"
+elif [ "$ARCH" = "powerpc" ]; then
+  KERNELBINARY="vmlinux"
+fi
+make \
+  CFLAGS="-Os -s -fno-stack-protector -U_FORTIFY_SOURCE" \
+  $KERNELBINARY -j $NUM_JOBS
+
 # Install the kernel file.
-cp arch/$ARCH/boot/bzImage \
+cp arch/$ARCH/boot/$KERNELBINARY \
   $SRC_DIR/work/kernel/kernel_installed/kernel
 
 # Install kernel headers which are used later when we build and configure the
