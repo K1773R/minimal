@@ -36,6 +36,13 @@ if [ "$USE_PREDEFINED_BUSYBOX_CONFIG" = "true" -a ! -f $SRC_DIR/minimal_config/b
   USE_PREDEFINED_BUSYBOX_CONFIG="false"
 fi
 
+# Force building 64bit PowerPC on 64bit architecture
+if [ "$(uname -m)" = "ppc64" ]; then
+  export CFLAGS="-m64 -mpowerpc64"
+  export LDFLAGS="-m64 -mpowerpc64"
+  export LDLIBS="-m64 -mpowerpc64"
+fi
+
 if [ "$USE_PREDEFINED_BUSYBOX_CONFIG" = "true" ] ; then
   # Use predefined configuration file for Busybox.
   echo "Using config file $SRC_DIR/minimal_config/busybox.config"  
