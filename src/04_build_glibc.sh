@@ -48,7 +48,8 @@ echo "Configuring glibc..."
 #export LIBRARY_PATH=/usr/lib/$(gcc -print-multiarch)
 export C_INCLUDE_PATH=/usr/include/$(gcc -print-multiarch)
 export CPLUS_INCLUDE_PATH=/usr/include/$(gcc -print-multiarch)
-# PowerPC build fails when any CFLAGS are defined, appending to CC
+# PowerPC build fails when any CFLAGS are defined, appending to CC and
+# forcing build of 32 or 64bit code
 UNAMEM="$(uname -m)"
 if [ "$UNAMEM" = "ppc" ]; then
   export CC="gcc -m32 -mpowerpc -Os -s -fno-stack-protector"
