@@ -44,13 +44,27 @@ cd glibc_objects
 # header area (see xx_build_kernel.sh). Packages 'gd' and 'selinux' are disabled
 # for better build compatibility with the host system.
 echo "Configuring glibc..."
+# to find the architecture depending lib-name-*.h
+#export LIBRARY_PATH=/usr/lib/$(gcc -print-multiarch)
+export C_INCLUDE_PATH=/usr/include/$(gcc -print-multiarch)
+export CPLUS_INCLUDE_PATH=/usr/include/$(gcc -print-multiarch)
+# PowerPC build fails when any CFLAGS are defined, appending to CC
+UNAMEM="$(uname -m)"
+if [ "$UNAMEM" = "ppc" ]; then
+  export CC="gcc -m32 -mpowerpc -Os -s -fno-stack-protector"
+  unset CFLAGS
+elif [ "$UNAMEM" = "ppc64" ]; then
+  export CC="gcc -m64 -mpowerpc64 -Os -s -fno-stack-protector"
+  unset CFLAGS
+else
+  export CFLAGS="-Os -s -fno-stack-protector"
+fi
 $GLIBC_SRC/configure \
   --prefix= \
   --with-headers=$KERNEL_INSTALLED/include \
   --without-gd \
   --without-selinux \
-  --disable-werror \
-  CFLAGS="-Os -s -fno-stack-protector -U_FORTIFY_SOURCE"
+  --disable-werror
 
 # Compile glibc with optimization for "parallel jobs" = "number of processors".
 echo "Building glibc..."
