@@ -88,7 +88,7 @@ fi
 # Good explanation of the different kernels:
 # http://unix.stackexchange.com/questions/5518/what-is-the-difference-between-the-following-kernel-makefile-terms-vmlinux-vmlinux
 echo "Building kernel..."
-if [ "$ARCH" = "powerpc" ]; then
+if [ "$ARCH" = "x86" ]; then
   KERNELBINARY="bzImage"
 elif [ "$ARCH" = "powerpc" ]; then
   KERNELBINARY="vmlinux"
