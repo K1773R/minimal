@@ -89,16 +89,18 @@ fi
 # http://unix.stackexchange.com/questions/5518/what-is-the-difference-between-the-following-kernel-makefile-terms-vmlinux-vmlinux
 echo "Building kernel..."
 if [ "$ARCH" = "x86" ]; then
-  KERNELBINARY="bzImage"
+  MAKETARGET="bzImage"
+  KERNELBINARY="arch/$ARCH/boot/$MAKETARGET"
 elif [ "$ARCH" = "powerpc" ]; then
-  KERNELBINARY="vmlinux"
+  MAKETARGET="vmlinux"
+  KERNELBINARY="$MAKETARGET"
 fi
 make \
   CFLAGS="-Os -s -fno-stack-protector -U_FORTIFY_SOURCE" \
-  $KERNELBINARY -j $NUM_JOBS
+  $MAKETARGET -j $NUM_JOBS
 
 # Install the kernel file.
-cp arch/$ARCH/boot/$KERNELBINARY \
+cp $KERNELBINARY \
   $SRC_DIR/work/kernel/kernel_installed/kernel
 
 # Install kernel headers which are used later when we build and configure the
