@@ -44,10 +44,10 @@ fi
 BUSYBOX_ARCH=$(file bin/busybox | cut -d' '  -f3)
 if [ "$BUSYBOX_ARCH" = "64-bit" ] ; then
   mkdir lib64
-  cp $GLIBC_PREPARED/lib/ld-linux* lib64
+  cp $GLIBC_PREPARED/lib/ld* lib64
   echo "Dynamic loader is accessed via '/lib64'."
 else
-  cp $GLIBC_PREPARED/lib/ld-linux* lib
+  cp $GLIBC_PREPARED/lib/ld* lib
   echo "Dynamic loader is accessed via '/lib'."
 fi
 
