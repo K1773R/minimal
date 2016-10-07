@@ -40,7 +40,7 @@ mkdir ../work/yaboot
 #tar -xvf $ARCHIVE_FILE -C ../work/yaboot
 ar xv $ARCHIVE_FILE data.tar.gz
 # Extract only neccesarry files
-tar xvf data.tar.gz -C ../work/yaboot ./usr/lib/yaboot/yaboot ./usr/share/doc/yaboot/examples/simpleboot.chrp
+tar xvf data.tar.gz -C ../work/yaboot --strip=4 ./usr/lib/yaboot/yaboot
 rm -f data.tar.gz
 
 cd $SRC_DIR
