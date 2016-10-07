@@ -44,6 +44,9 @@ tar xvf data.tar.gz -C ../work/yaboot --strip=4 ./usr/lib/yaboot/yaboot
 rm -f data.tar.gz
 
 cd $SRC_DIR
+# Create ofboot.b (OpenFirmware boot script)
+echo "Create ofboot.b (OpenFirmware boot script)"
+sh yaboot_ofboot.b.sh > work/yaboot/ofboot.b
 
 echo "*** GET YABOOT END ***"
 
