@@ -40,7 +40,13 @@ if [ "$USE_PREDEFINED_KERNEL_CONFIG" = "true" ] ; then
   cp -f $SRC_DIR/minimal_config/kernel.config .config
 else
   # Create default configuration file for the kernel.
-  make defconfig -j $NUM_JOBS
+
+  # PowerPC has 32 and 64 bit, hence there is no defconfig
+  if [ "$(uname -m)" = "ppc" ]; then
+    make pmac32_defconfig -j $NUM_JOBS
+  else
+    make defconfig -j $NUM_JOBS
+  fi
   echo "Generated default kernel configuration."
 
   # Changes the name of the system to 'minimal'.
