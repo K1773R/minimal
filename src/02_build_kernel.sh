@@ -69,6 +69,10 @@ else
 
   # Enable auto mount of DEVTMPFS
   sed -i "s/.*CONFIG_DEVTMPFS_MOUNT.*/CONFIG_DEVTMPFS_MOUNT=y/" .config
+  # Sometimes this hasnt been set before, so we check if it exists and if not we put it in
+  if [ ! $(grep CONFIG_DEVTMPFS_MOUNT .config) ]; then
+    echo "CONFIG_DEVTMPFS_MOUNT=y" >> .config
+  fi
 
   # Read the 'USE_BOOT_LOGO' property from '.config'
   USE_BOOT_LOGO="$(grep -i ^USE_BOOT_LOGO $SRC_DIR/.config | cut -f2 -d'=')"
