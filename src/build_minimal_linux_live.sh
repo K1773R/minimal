@@ -11,6 +11,5 @@ time sh 07_build_busybox.sh
 time sh 08_prepare_src.sh
 time sh 09_generate_rootfs.sh
 time sh 10_pack_rootfs.sh
-time sh 11_get_syslinux.sh
+time sh 11_get_bootloader.sh
 time sh 12_generate_iso.sh
-
