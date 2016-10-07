@@ -72,7 +72,7 @@ cp $WORK_YABOOT_DIR/ofboot.b boot/
 cp $WORK_YABOOT_DIR/boot.msg boot/
 
 # Now we copy the kernel.
-cp $KERNEL_INSTALLED/kernel/vmlinux boot/
+cp $KERNEL_INSTALLED/kernel boot/vmlinux
 
 # Now we copy the root file system.
 cp ../rootfs.cpio.xz boot/rootfs.xz
