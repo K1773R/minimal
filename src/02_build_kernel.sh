@@ -119,6 +119,11 @@ make \
 cp $KERNELBINARY \
   $SRC_DIR/work/kernel/kernel_installed/kernel
 
+# Further strip down the kernel, saving a lot of space and ram
+if [ ! "$DONTSTRIPKERNEL" = "true" ]; then
+  strip --strip-all $KERNELBINARY
+fi
+
 # Install kernel headers which are used later when we build and configure the
 # GNU C library (glibc).
 echo "Generating kernel headers..."
