@@ -7,7 +7,7 @@
 # have hard disk image, you can use it as overlay device and persist all your
 # changes. See the '.config' file for more information on the overlay support.
 
-cmd="qemu-system-ppc -m 128M -cdrom minimal_linux_live.iso -boot d -vga std"
+cmd="qemu-system-ppc -cpu G4 -M mac99 -m 128 -bios /usr/share/openbios/openbios-ppc -cdrom ubuntu-16.04-server-powerpc.iso -boot d -vga std"
 
 if [ "$1" = "-hdd" -o "$1" = "-h" ] ; then
   echo "Starting QEMU with attached ISO image and hard disk."
