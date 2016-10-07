@@ -15,5 +15,8 @@ sh yaboot_boot.msg.sh > work/yaboot/boot.msg
 echo "Create yaboot.conf (Yaboot config)"
 sh yaboot_yaboot.conf.sh > work/yaboot/yaboot.conf
 
+echo "Create hfs.map (HFS Map)"
+sh yaboot_hfs.map.sh > work/yaboot/hfs.map
+
 echo "*** GEN YABOOT END ***"
 
