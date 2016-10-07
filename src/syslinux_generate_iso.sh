@@ -11,7 +11,7 @@
 #
 # Probably it's best to create separate shell scripts for each functionality. 
 
-echo "*** GENERATE ISO BEGIN ***"
+echo "*** GENERATE SYSLINUX ISO BEGIN ***"
 
 SRC_DIR=$(pwd)
 
@@ -163,5 +163,5 @@ fi
 
 cd $SRC_DIR
 
-echo "*** GENERATE ISO END ***"
+echo "*** GENERATE SYSLINUX ISO END ***"
 
