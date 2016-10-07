@@ -44,6 +44,9 @@ else
   # PowerPC has 32 and 64 bit, hence there is no defconfig
   if [ "$(uname -m)" = "ppc" ]; then
     make pmac32_defconfig -j $NUM_JOBS
+  # Catch Apple G5 (MacRISC4) PowerPC and take specific target
+  elif [ "$(unane -m)" = "ppc64" ] && [ $(grep MacRISC4 /proc/cpuinfo > /dev/null) ]; then
+    make g5_defconfig
   else
     make defconfig -j $NUM_JOBS
   fi
