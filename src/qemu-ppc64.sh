@@ -7,7 +7,7 @@
 # have hard disk image, you can use it as overlay device and persist all your
 # changes. See the '.config' file for more information on the overlay support.
 
-cmd="qemu-system-ppc64 -m 128M -cdrom minimal_linux_live.iso -boot d -vga std"
+cmd="qemu-system-ppc64 -m 256M -cdrom minimal_linux_live.iso -boot d -vga std"
 
 if [ "$1" = "-hdd" -o "$1" = "-h" ] ; then
   echo "Starting QEMU with attached ISO image and hard disk."
