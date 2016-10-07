@@ -67,6 +67,9 @@ else
   # Enable DEVTMPFS in case it got disabled (we dont use udev, we rely on it!)
   sed -i "s/.*CONFIG_DEVTMPFS.*/CONFIG_DEVTMPFS=y/" .config
 
+  # Enable auto mount of DEVTMPFS
+  sed -i "s/.*CONFIG_DEVTMPFS_MOUNT.*/CONFIG_DEVTMPFS_MOUNT=y/" .config
+
   # Read the 'USE_BOOT_LOGO' property from '.config'
   USE_BOOT_LOGO="$(grep -i ^USE_BOOT_LOGO $SRC_DIR/.config | cut -f2 -d'=')"
 
