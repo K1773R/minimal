@@ -71,6 +71,10 @@ cp $WORK_YABOOT_DIR/yaboot.conf boot/
 cp $WORK_YABOOT_DIR/ofboot.b boot/
 cp $WORK_YABOOT_DIR/boot.msg boot/
 
+# Copy additional bootup files (bootinfo.txt)
+mkdir -p ppc
+cp $WORK_YABOOT_DIR/bootinfo.txt ppc/
+
 # Now we copy the kernel.
 cp $KERNEL_INSTALLED/kernel boot/vmlinux
 
