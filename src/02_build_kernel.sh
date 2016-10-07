@@ -64,6 +64,9 @@ else
   # Enable the VESA framebuffer for graphics support.
   sed -i "s/.*CONFIG_FB_VESA.*/CONFIG_FB_VESA=y/" .config
 
+  # Enable DEVTMPFS in case it got disabled (we dont use udev, we rely on it!)
+  sed -i "s/.*CONFIG_DEVTMPFS.*/CONFIG_DEVTMPFS=y/" .config
+
   # Read the 'USE_BOOT_LOGO' property from '.config'
   USE_BOOT_LOGO="$(grep -i ^USE_BOOT_LOGO $SRC_DIR/.config | cut -f2 -d'=')"
 
