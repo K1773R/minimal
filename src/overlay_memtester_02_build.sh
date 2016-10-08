@@ -37,8 +37,8 @@ echo "Building memtester..."
 make -j $NUM_JOBS
 
 echo "Installing memtester..."
-mkdir -p ../../memtester_installed/sbin
-cp memtester ../../memtester_installed/sbin/ 
+mkdir -p ../memtester_installed/sbin
+cp memtester ../memtester_installed/sbin/
 
 echo "Reducing memtester size..."
 strip --strip-all ../memtester_installed/sbin/*
