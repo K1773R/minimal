@@ -78,7 +78,7 @@ else
   fi
 
   # Enable Firewire basic modules for PowerPC Apple
-  if [ $(grep MacRISC /proc/cpuinfo > /dev/null) ];
+  if [ $(grep MacRISC /proc/cpuinfo > /dev/null) ]; then
     echo "MacRISC detected, enabling firewire basic modules"
 
     sed -i "s/.*CONFIG_FIREWIRE.*/CONFIG_FIREWIRE=y/" .config
