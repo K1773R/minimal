@@ -101,9 +101,14 @@ else
       echo "CONFIG_FIREWIRE_SBP2=y" >> .config
     fi
 
-    sed -i "s/.*CONFIG_SND_FIREWIRE.*/CONFIG_SND_FIREWIRE=y/" .config
+    sed -i "s/.*CONFIG_SND_FIREWIRE.*/# CONFIG_SND_FIREWIRE is not set/" .config
     if ! $(grep CONFIG_SND_FIREWIRE .config > /dev/null); then
-      echo "CONFIG_SND_FIREWIRE=y" >> .config
+      echo "# CONFIG_SND_FIREWIRE is not set" >> .config
+    fi
+
+    sed -i "s/.*CONFIG_FIREWIRE_NOSY.*/# CONFIG_FIREWIRE_NOSY is not set/" .config
+    if ! $(grep CONFIG_FIREWIRE_NOSY .config > /dev/null); then
+      echo "# CONFIG_FIREWIRE_NOSY is not set" >> .config
     fi
   fi
 
