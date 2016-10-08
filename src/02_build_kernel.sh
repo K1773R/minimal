@@ -73,7 +73,7 @@ else
   # Enable auto mount of DEVTMPFS
   sed -i "s/.*CONFIG_DEVTMPFS_MOUNT.*/CONFIG_DEVTMPFS_MOUNT=y/" .config
   # Sometimes this hasnt been set before, so we check if it exists and if not we put it in
-  if ! $(grep CONFIG_DEVTMPFS_MOUNT .config); then
+  if ! $(grep CONFIG_DEVTMPFS_MOUNT .config > /dev/null); then
     echo "CONFIG_DEVTMPFS_MOUNT=y" >> .config
   fi
 
@@ -81,23 +81,18 @@ else
   if $(grep MacRISC /proc/cpuinfo > /dev/null); then
     echo "MacRISC detected, enabling firewire basic modules"
 
-    sed -i "s/.*CONFIG_FIREWIRE.*/CONFIG_FIREWIRE=y/" .config
-    if ! $(grep CONFIG_FIREWIRE .config); then
-      echo "CONFIG_FIREWIRE=y" >> .config
-    fi
-
     sed -i "s/.*CONFIG_FIREWIRE_NET.*/CONFIG_FIREWIRE_NET=y/" .config
-    if ! $(grep CONFIG_FIREWIRE_NET .config); then
+    if ! $(grep CONFIG_FIREWIRE_NET .config > /dev/null); then
       echo "CONFIG_FIREWIRE_NET=y" >> .config
     fi
 
     sed -i "s/.*CONFIG_FIREWIRE_OHCI.*/CONFIG_FIREWIRE_OHCI=y/" .config
-    if ! $(grep CONFIG_FIREWIRE_OHCI .config); then
+    if ! $(grep CONFIG_FIREWIRE_OHCI .config > /dev/null); then
       echo "CONFIG_FIREWIRE_OHCI=y" >> .config
     fi
 
     sed -i "s/.*CONFIG_FIREWIRE_SBP2.*/CONFIG_FIREWIRE_SBP2=y/" .config
-    if ! $(grep CONFIG_FIREWIRE_SBP2 .config); then
+    if ! $(grep CONFIG_FIREWIRE_SBP2 .config > /dev/null); then
       echo "CONFIG_FIREWIRE_SBP2=y" >> .config
     fi
   fi
