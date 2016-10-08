@@ -29,7 +29,7 @@ fi
 # Delete folder with previously extracted memtester.
 echo "Removing memtester work area. This may take a while..."
 rm -rf ../../work/overlay/memtester
-mkdir ../../work/overlay/memtester
+mkdir -p ../../work/overlay/memtester
 
 # Extract memtester to folder 'work/overlay/memtester'.
 # Full path will be something like 'work/overlay/memtester/memtester-4.3.0'.

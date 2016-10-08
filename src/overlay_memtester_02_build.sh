@@ -26,7 +26,7 @@ make clean -j $NUM_JOBS 2>/dev/null
 
 rm -rf ../memtester_installed
 
-echo "Configuring Dropbear..."
+echo "Configuring memtester..."
 # Force 64bit build on ppc64 with 32bit userland
 if [ "$(uname -m)" = "ppc64" ]; then
   sed -i 's/cc /cc -m64 -mpowerpc64 /' conf-cc
