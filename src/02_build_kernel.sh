@@ -77,6 +77,31 @@ else
     echo "CONFIG_DEVTMPFS_MOUNT=y" >> .config
   fi
 
+  # Enable Firewire basic modules for PowerPC Apple
+  if [ $(grep MacRISC /proc/cpuinfo > /dev/null) ];
+    echo "MacRISC detected, enabling firewire basic modules"
+
+    sed -i "s/.*CONFIG_FIREWIRE.*/CONFIG_FIREWIRE=y/" .config
+    if [ ! $(grep CONFIG_FIREWIRE .config) ]; then
+      echo "CONFIG_FIREWIRE=y" >> .config
+    fi
+
+    sed -i "s/.*CONFIG_FIREWIRE_NET.*/CONFIG_FIREWIRE_NET=y/" .config
+    if [ ! $(grep CONFIG_FIREWIRE_NET .config) ]; then
+      echo "CONFIG_FIREWIRE_NET=y" >> .config
+    fi
+
+    sed -i "s/.*CONFIG_FIREWIRE_OHCI.*/CONFIG_FIREWIRE_OHCI=y/" .config
+    if [ ! $(grep CONFIG_FIREWIRE_OHCI .config) ]; then
+      echo "CONFIG_FIREWIRE_OHCI=y" >> .config
+    fi
+
+    sed -i "s/.*CONFIG_FIREWIRE_SBP2.*/CONFIG_FIREWIRE_SBP2=y/" .config
+    if [ ! $(grep CONFIG_FIREWIRE_SBP2 .config) ]; then
+      echo "CONFIG_FIREWIRE_SBP2=y" >> .config
+    fi
+  fi
+
   # Read the 'USE_BOOT_LOGO' property from '.config'
   USE_BOOT_LOGO="$(grep -i ^USE_BOOT_LOGO $SRC_DIR/.config | cut -f2 -d'=')"
 
