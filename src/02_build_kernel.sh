@@ -158,7 +158,7 @@ cp $KERNELBINARY \
   $SRC_DIR/work/kernel/kernel_installed/kernel
 
 # Further strip down the kernel, saving a lot of space and ram
-if [ ! "$DONTSTRIPKERNEL" = "true" ]; then
+if [ ! "$DONTSTRIPKERNEL" = "true" ] && [ "$(basename $KERNELBINARY)" = "vmlinux" ]; then
   strip --strip-all $KERNELBINARY
 fi
 
