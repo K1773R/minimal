@@ -3,7 +3,7 @@ exec tail -n +4 $0
 
 ## This yaboot.conf is for CD booting only, do not use as reference.
 default=Linux
-
+timeout=30
 message=/boot/boot.msg
 
 image=/boot/vmlinux
